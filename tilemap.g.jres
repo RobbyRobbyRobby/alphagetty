@@ -5,16 +5,40 @@
         "tilemapTile": true
     },
     "tile2": {
-        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "data": "hwQQABAAAADy////////Ly/////////y//L/////L///L//////y////8v//L/////8v///y///////yL////////y/y////////L/L////////yL///////L///8v/////y//8v////L//////y///y/////y//L/////////Ly////////Lw==",
         "mimeType": "image/x-mkcd-f4",
         "tilemapTile": true,
-        "displayName": "myTile0"
+        "displayName": "DeathTile"
     },
     "tile1": {
-        "data": "hwQQABAAAAC7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7uw==",
+        "data": "hwQQABAAAAC7W1W1u7u7u7u7VVW1u7u7u7tbVVW7u7u7u7tbVbu7u7u7u1tVu7u7u7u7W1W7u7u7u7tbVbu7u7u7u1tVu7u7u7tbVVW7u7u7u1VVtbu7u7tbVbW7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7uw==",
         "mimeType": "image/x-mkcd-f4",
         "tilemapTile": true,
-        "displayName": "myTile"
+        "displayName": "FoodStartingLocationAsset"
+    },
+    "tile3": {
+        "data": "hwQQABAAAAB3d3d3d3d3d3dVVXV3d3d3d3V3dXd3d3d3dXd1VVV1d3d1d3V1d3V3d1VVdXV3dXd3d3d3dXd1d3d3d3dVVXV3d1dVVXd3d3d3V3dXV1VVd3dXd1dXd1d3d1d3V1d3V3d3V1VVV3dXd3d3d3dXVVV3d3d3d3d3d3d3d3d3d3d3dw==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "CoinStartingLocation"
+    },
+    "tile4": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAACAAAAACAAAAIAAAIAAAAAAgAAACAAAAACAAAAIAAAAAAAAAAgAAAAAAAAACAAAAACAAAAIAAAAAIAAAAgAAAAAgAAACAAAAACAAACAAAAAAIAAAAAIAAAAgAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "EnemyStartingLocation"
+    },
+    "tile5": {
+        "data": "hwQQABAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV1VVVVVVVVVXdXVVVVVVV1d3dVVVVVVXd3d1dVVVV1d3d3d1VVVVV3d3dXVVVVVXV3d1VVVVVVVXdXVVVVVVVVdVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVQ==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "GoalLocationTile"
+    },
+    "tile6": {
+        "data": "hwQQABAAAABmZmZmZmZmZmZmZiIiIiIiZmZmYmZmZiZmZmYiIiIiImZmZmZmZmZmZmZmZmZmZmZmZmYmIiIiImZmZiZmZmYmZmZmJmZmZiZmZmYmIiIiImZmZmZmZmZmZmZmZmZmZmZmZmZmJiIiZmZmZmYmZiZmZmZmZiZmJmZmZmZmJiIiZg==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "PowerupStartingLocation"
     },
     "level1": {
         "id": "level1",

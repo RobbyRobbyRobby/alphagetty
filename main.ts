@@ -25,58 +25,7 @@ function bButtonPressed () {
 }
 // Level Initializations
 function InitCharacterList () {
-    CharacterList = [img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . 4 . . 4 . . . . . . 
-        . . . . . . 4 . . 4 . . . . . . 
-        . . . . . . 4 . . 4 . . . . . . 
-        . . . . . . 4 4 4 4 . . . . . . 
-        . . . . d d f d d d f d . . . . 
-        . . . d d d d f d d d f d . . . 
-        . . . d d 8 d d d 8 d f d . . . 
-        . . . d d d d d d d d d d . . . 
-        . . . d d d d d d d d d d . . . 
-        . . . d d f d f f d f d d . . . 
-        . . . . . e e e e e e . . . . . 
-        . . . . . e e e e e e . . . . . 
-        . . f f f e e e e e e f f f . . 
-        . . f . . e e e e e e . . f . . 
-        . . f . f . . . . . . f . f . . 
-        `, img`
-        . . . 5 . . . . . . . . 5 . . . 
-        . 5 5 5 5 . . . . . . 5 5 5 5 . 
-        5 5 5 5 5 5 . . . . 5 5 5 5 5 5 
-        5 5 5 5 5 4 4 4 4 4 4 5 5 5 5 5 
-        5 5 5 5 4 4 4 4 4 4 4 4 5 5 5 5 
-        5 5 5 4 4 4 6 6 6 6 4 4 4 5 5 5 
-        5 5 4 4 4 6 6 6 6 6 6 4 4 4 5 5 
-        . 5 4 4 6 6 6 6 6 6 6 6 4 4 5 . 
-        . 5 5 4 6 6 6 6 6 6 6 6 4 5 5 . 
-        . . 4 4 6 6 6 6 6 6 6 6 4 4 . . 
-        . . 4 4 6 6 6 6 6 6 6 6 4 4 . . 
-        . . 4 4 4 6 6 6 6 6 6 4 4 4 . . 
-        . . . 4 4 4 6 6 6 6 4 4 4 . . . 
-        . . . . 4 4 4 4 4 4 4 4 . . . . 
-        . . . . . 4 4 4 4 4 4 . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . 7 7 7 7 7 7 7 7 7 7 7 7 7 7 . 
-        . 7 7 7 7 7 7 7 7 7 7 7 7 7 7 . 
-        . 7 7 3 3 3 3 3 3 3 3 3 3 7 7 . 
-        . 7 7 3 3 3 3 3 3 3 3 3 3 7 7 . 
-        . 7 7 3 3 5 5 5 3 5 5 5 5 7 7 . 
-        . 7 7 3 3 3 8 8 8 3 8 8 8 7 7 . 
-        . 7 7 3 3 3 8 8 8 3 8 8 8 7 7 . 
-        . 7 7 3 3 3 3 3 3 3 3 3 3 7 7 . 
-        . 7 7 3 3 3 a 3 3 3 3 a 3 7 7 . 
-        . 7 7 3 3 3 a a a a a a 3 7 7 . 
-        . 7 7 7 7 7 7 7 7 7 7 7 7 7 7 . 
-        . 7 7 7 7 7 7 7 7 7 7 7 7 7 7 . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `]
+    CharacterList = [assets.image`HeroOption1`, assets.image`HeroOption2`, assets.image`HeroOption3`]
 }
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     bButtonPressed()
@@ -87,15 +36,20 @@ function PlayerHurt () {
     Hero.setFlag(SpriteFlag.GhostThroughSprites, true)
 }
 function aButtonPressed () {
-    Hero.vy = JumpPower
+    if (Hero.vy == 0) {
+        Hero.vy = JumpPower
+    }
 }
 function InitPlayerForLevel () {
-    tiles.placeOnRandomTile(Hero, sprites.dungeon.stairLadder)
+    tiles.placeOnRandomTile(Hero, HeroStartingLocationAsset)
 }
 function InitLevels () {
-    scene.setBackgroundColor(15)
+    scene.setBackgroundColor(BackgroundColour)
     CurrentLevelNumber = 0
     LevelList = []
+}
+function LoadGoalsForLevel () {
+    GoalList = sprites.allOfKind(SpriteKind.Goals)
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (HeroCharacterSelected == false) {
@@ -110,6 +64,8 @@ function LoadLevel () {
     LoadEnemiesForLevel()
     LoadFoodForLevel()
     InitPlayerForLevel()
+    LoadPowerupsForLevel()
+    LoadGoalsForLevel()
 }
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     if (HeroCharacterSelected == false) {
@@ -125,11 +81,17 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.PowerUp, function (sprite, otherSprite) {
-	
+    otherSprite.destroy()
 })
+function LoadPowerupsForLevel () {
+    PowerupList = sprites.allOfKind(SpriteKind.PowerUp)
+}
 info.onCountdownEnd(function () {
     Hero.setFlag(SpriteFlag.GhostThroughSprites, false)
 })
+function LoadCoinsForLevel () {
+    CoinList = sprites.allOfKind(SpriteKind.Coins)
+}
 function DoGameIntroduction () {
 	
 }
@@ -158,13 +120,13 @@ function NextLevel () {
     LoadLevel()
 }
 function LoadEnemiesForLevel () {
-    EnemyList = sprites.allOfKind(SpriteKind.Goals)
+    EnemyList = sprites.allOfKind(SpriteKind.Enemy)
 }
 info.onLifeZero(function () {
-    LoadLevel()
+    OnOutOfLives()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Goals, function (sprite, otherSprite) {
-	
+    otherSprite.destroy()
 })
 function DoGravityEffect () {
     if (Hero.vy < TerminalVelocity) {
@@ -193,19 +155,34 @@ function SelectCharacter () {
         pause(100)
     }
     game.showLongText("Character selected!", DialogLayout.Bottom)
-    controller.moveSprite(Hero, 100, 0)
+    controller.moveSprite(Hero, PlayerSpeed, 0)
+    info.setLife(StartingLives)
+    LoadLevel()
+}
+function OnOutOfLives () {
     LoadLevel()
 }
 /**
- * Change these to manipulate how the game acts
+ * Start here!
+ * 
+ * Change these to manipulate how the game acts without navigating the majority of the code base.
  */
 function SetupVariables () {
     GravityStrength = 5
     TerminalVelocity = 100
     JumpPower = -100
+    BackgroundColour = color.__rgb(255, 255, 255)
+    HeroStartingLocationAsset = sprites.dungeon.stairLadder
+    FoodStartingLocationAsset = myTiles.tile1
+    EnemyStartingLocationAsset = myTiles.tile4
+    CoinStartingLocationAsset = myTiles.tile3
+    PowerupStartingLocationAsset = myTiles.tile6
+    GoalStartingLocationAsset = myTiles.tile5
+    StartingLives = 3
+    PlayerSpeed = 100
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Coins, function (sprite, otherSprite) {
-	
+    otherSprite.destroy()
 })
 // Game Start Functions
 // 
@@ -215,21 +192,33 @@ function InitGame () {
     InitLevels()
     SelectCharacter()
 }
-scene.onOverlapTile(SpriteKind.Player, assets.tile`transparency16`, function (sprite, location) {
-	
-})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
     PlayerHurt()
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`DeathTile`, function (sprite, location) {
+	
+})
+let GoalStartingLocationAsset: Image = null
+let PowerupStartingLocationAsset: Image = null
+let CoinStartingLocationAsset: Image = null
+let EnemyStartingLocationAsset: Image = null
+let FoodStartingLocationAsset: Image = null
+let StartingLives = 0
+let PlayerSpeed = 0
 let GravityStrength = 0
 let TerminalVelocity = 0
 let EnemyList: Sprite[] = []
 let FoodList: Sprite[] = []
+let CoinList: Sprite[] = []
+let PowerupList: Sprite[] = []
 let SelectedHeroIndex = 0
 let HeroCharacterSelected = false
+let GoalList: Sprite[] = []
 let LevelList: number[] = []
 let CurrentLevelNumber = 0
+let BackgroundColour = 0
+let HeroStartingLocationAsset: Image = null
 let JumpPower = 0
 let Hero: Sprite = null
 let CharacterList: Image[] = []

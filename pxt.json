@@ -2,7 +2,8 @@
     "name": "AlphaGetty",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "Color Fading": "github:jwunderl/pxt-color#v0.2.1"
     },
     "files": [
         "main.blocks",
