@@ -90,10 +90,10 @@ function aButtonPressed () {
     Hero.vy = JumpPower
 }
 function InitPlayerForLevel () {
-    tiles.placeOnRandomTile(Hero, assets.tile`transparency16`)
+    tiles.placeOnRandomTile(Hero, sprites.dungeon.stairLadder)
 }
 function InitLevels () {
-    scene.setBackgroundColor(14)
+    scene.setBackgroundColor(15)
     CurrentLevelNumber = 0
     LevelList = []
 }
