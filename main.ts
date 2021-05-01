@@ -36,7 +36,7 @@ function PlayerHurt () {
     Hero.setFlag(SpriteFlag.GhostThroughSprites, true)
 }
 function aButtonPressed () {
-    if (Hero.vy == 5) {
+    if (Hero.vy == 0) {
         Hero.vy = JumpPower
     }
 }
@@ -46,7 +46,14 @@ function InitPlayerForLevel () {
 function InitLevels () {
     scene.setBackgroundColor(BackgroundColour)
     CurrentLevelNumber = 0
-    LevelList = []
+    LevelList = [
+    tiles.createMap(tilemap`level5`),
+    tiles.createMap(tilemap`level5`),
+    tiles.createMap(tilemap`level5`),
+    tiles.createMap(tilemap`level5`),
+    tiles.createMap(tilemap`level5`),
+    tiles.createMap(tilemap`level5`)
+    ]
 }
 function LoadGoalsForLevel () {
     GoalList = sprites.allOfKind(SpriteKind.Goals)
@@ -60,12 +67,17 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 function LoadLevel () {
-    tiles.setTilemap(tilemap`level3`)
-    LoadEnemiesForLevel()
-    LoadFoodForLevel()
-    InitPlayerForLevel()
-    LoadPowerupsForLevel()
-    LoadGoalsForLevel()
+    let list: number[] = []
+    if (CurrentLevelNumber >= list.length - 1) {
+        DoGameWon()
+    } else {
+        tiles.loadMap(LevelList[CurrentLevelNumber])
+        LoadEnemiesForLevel()
+        LoadFoodForLevel()
+        InitPlayerForLevel()
+        LoadPowerupsForLevel()
+        LoadGoalsForLevel()
+    }
 }
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     if (HeroCharacterSelected == false) {
@@ -135,6 +147,9 @@ function DoGravityEffect () {
     if (Hero.vy > TerminalVelocity) {
         Hero.vy = TerminalVelocity
     }
+}
+function DoGameWon () {
+	
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     otherSprite.destroy()
@@ -215,7 +230,7 @@ let PowerupList: Sprite[] = []
 let SelectedHeroIndex = 0
 let HeroCharacterSelected = false
 let GoalList: Sprite[] = []
-let LevelList: number[] = []
+let LevelList: tiles.WorldMap[] = []
 let CurrentLevelNumber = 0
 let BackgroundColour = 0
 let HeroStartingLocationAsset: Image = null

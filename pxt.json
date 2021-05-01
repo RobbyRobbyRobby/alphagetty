@@ -3,7 +3,8 @@
     "description": "",
     "dependencies": {
         "device": "*",
-        "Color Fading": "github:jwunderl/pxt-color#v0.2.1"
+        "Color Fading": "github:jwunderl/pxt-color#v0.2.1",
+        "tilemaps": "github:microsoft/pxt-tilemaps#v1.11.0"
     },
     "files": [
         "main.blocks",
