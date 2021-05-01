@@ -36,7 +36,7 @@ function PlayerHurt () {
     Hero.setFlag(SpriteFlag.GhostThroughSprites, true)
 }
 function aButtonPressed () {
-    if (Hero.vy == 0) {
+    if (Hero.vy == 5) {
         Hero.vy = JumpPower
     }
 }
