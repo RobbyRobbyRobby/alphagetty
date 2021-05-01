@@ -6,20 +6,18 @@ namespace SpriteKind {
     export const LevelStartLocation = SpriteKind.create()
 }
 /**
- * Collision Events
- */
-/**
- * Game Lifecycle and Input Events
- */
-/**
  * Player Functions
  */
 /**
  * Game Start Functions
  */
 /**
- * Level Functions
+ * Collision Events
  */
+/**
+ * Game Lifecycle and Input Events
+ */
+// Level Functions
 function bButtonPressed () {
 	
 }
@@ -36,7 +34,7 @@ function PlayerHurt () {
     Hero.setFlag(SpriteFlag.GhostThroughSprites, true)
 }
 function aButtonPressed () {
-    if (Hero.vy == 0) {
+    if (Hero.vy == 5) {
         Hero.vy = JumpPower
     }
 }
@@ -46,14 +44,7 @@ function InitPlayerForLevel () {
 function InitLevels () {
     scene.setBackgroundColor(BackgroundColour)
     CurrentLevelNumber = 0
-    LevelList = [
-    tiles.createMap(tilemap`level5`),
-    tiles.createMap(tilemap`level5`),
-    tiles.createMap(tilemap`level5`),
-    tiles.createMap(tilemap`level5`),
-    tiles.createMap(tilemap`level5`),
-    tiles.createMap(tilemap`level5`)
-    ]
+    LevelList = [tiles.createMap(tilemap`Level0`), tiles.createMap(tilemap`level15`), tiles.createMap(tilemap`level16`)]
 }
 function LoadGoalsForLevel () {
     GoalList = sprites.allOfKind(SpriteKind.Goals)
@@ -67,8 +58,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 function LoadLevel () {
-    let list: number[] = []
-    if (CurrentLevelNumber >= list.length - 1) {
+    if (CurrentLevelNumber >= LevelList.length - 1) {
         DoGameWon()
     } else {
         tiles.loadMap(LevelList[CurrentLevelNumber])
@@ -177,22 +167,20 @@ function SelectCharacter () {
 function OnOutOfLives () {
     LoadLevel()
 }
-/**
- * Start here!
- * 
- * Change these to manipulate how the game acts without navigating the majority of the code base.
- */
+// Start here!
+// 
+// Change these to manipulate how the game acts without navigating the majority of the code base.
 function SetupVariables () {
     GravityStrength = 5
     TerminalVelocity = 100
     JumpPower = -100
     BackgroundColour = color.__rgb(255, 255, 255)
     HeroStartingLocationAsset = sprites.dungeon.stairLadder
-    FoodStartingLocationAsset = myTiles.tile1
-    EnemyStartingLocationAsset = myTiles.tile4
-    CoinStartingLocationAsset = myTiles.tile3
-    PowerupStartingLocationAsset = myTiles.tile6
-    GoalStartingLocationAsset = myTiles.tile5
+    FoodStartingLocationAsset = assets.tile`FoodStartingLocationAsset`
+    EnemyStartingLocationAsset = assets.tile`EnemyStartingLocation`
+    CoinStartingLocationAsset = assets.tile`CoinStartingLocation`
+    PowerupStartingLocationAsset = assets.tile`PowerupStartingLocation`
+    GoalStartingLocationAsset = assets.tile`GoalLocationTile`
     StartingLives = 3
     PlayerSpeed = 100
 }
