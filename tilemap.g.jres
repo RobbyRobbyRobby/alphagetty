@@ -4,12 +4,6 @@
         "mimeType": "image/x-mkcd-f4",
         "tilemapTile": true
     },
-    "tile2": {
-        "data": "hwQQABAAAADy////////Ly/////////y//L/////L///L//////y////8v//L/////8v///y///////yL////////y/y////////L/L////////yL///////L///8v/////y//8v////L//////y///y/////y//L/////////Ly////////Lw==",
-        "mimeType": "image/x-mkcd-f4",
-        "tilemapTile": true,
-        "displayName": "DeathTile"
-    },
     "tile1": {
         "data": "hwQQABAAAAC7W1W1u7u7u7u7VVW1u7u7u7tbVVW7u7u7u7tbVbu7u7u7u1tVu7u7u7u7W1W7u7u7u7tbVbu7u7u7u1tVu7u7u7tbVVW7u7u7u1VVtbu7u7tbVbW7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7uw==",
         "mimeType": "image/x-mkcd-f4",
@@ -22,12 +16,6 @@
         "tilemapTile": true,
         "displayName": "CoinStartingLocation"
     },
-    "tile4": {
-        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAACAAAAACAAAAIAAAIAAAAAAgAAACAAAAACAAAAIAAAAAAAAAAgAAAAAAAAACAAAAACAAAAIAAAAAIAAAAgAAAAAgAAACAAAAACAAACAAAAAAIAAAAAIAAAAgAAAAAAAAAAAAAAAAAA==",
-        "mimeType": "image/x-mkcd-f4",
-        "tilemapTile": true,
-        "displayName": "EnemyStartingLocation"
-    },
     "tile5": {
         "data": "hwQQABAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV1VVVVVVVVVXdXVVVVVVV1d3dVVVVVVXd3d1dVVVV1d3d3d1VVVVV3d3dXVVVVVXV3d1VVVVVVVXdXVVVVVVVVdVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVQ==",
         "mimeType": "image/x-mkcd-f4",
@@ -39,6 +27,30 @@
         "mimeType": "image/x-mkcd-f4",
         "tilemapTile": true,
         "displayName": "PowerupStartingLocation"
+    },
+    "tile4": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAACAAAAACAAAAIAAAIAAAAAAgAAACAAAAACAAAAIAAAAAAAAAAgAAAAAAAAACAAAAACAAAAIAAAAAIAAAAgAAAAAgAAACAAAAACAAACAAAAAAIAAAAAIAAAAgAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "Enemy1StartingLocation"
+    },
+    "tile2": {
+        "data": "hwQQABAAAADy////////Ly/////////y//L/////L///L//////y////8v//L/////8v///y///////yL////////y/y////////L/L////////yL///////L///8v/////y//8v////L//////y///y/////y//L/////////Ly////////Lw==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "Trap1Location"
+    },
+    "tile7": {
+        "data": "hwQQABAAAAD3////////f3/////////3//f/////f///f//////3////9///f/////9////3///////3f////////3/3////////f/f////////3f///////f///9//////3//9/////f//////3///3/////3//f/////////f3////////fw==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "Trap2Location"
+    },
+    "tile8": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAAAAAHAAAAAHAAAAcAAAcAAAAABwAAAHAAAAAHAAAAcAAAAAAAAABwAAAAAAAAAHAAAAAHAAAAcAAAAAcAAABwAAAABwAAAHAAAAAHAAAHAAAAAAcAAAAAcAAABwAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "Enemy2StartingLocation"
     },
     "level1": {
         "id": "level1",
