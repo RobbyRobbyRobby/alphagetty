@@ -11,9 +11,6 @@ namespace SpriteKind {
 /**
  * Game Lifecycle and Input Events
  */
-/**
- * Game Start Functions
- */
 // Level Functions
 function bButtonPressed () {
 	
@@ -190,6 +187,9 @@ function SetupVariables () {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Coins, function (sprite, otherSprite) {
     otherSprite.destroy()
 })
+/**
+ * Game Start Functions
+ */
 // Game Start Functions
 // 
 // Everything from START to play beginning
