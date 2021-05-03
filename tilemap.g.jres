@@ -22,12 +22,6 @@
         "tilemapTile": true,
         "displayName": "GoalLocationTile"
     },
-    "tile6": {
-        "data": "hwQQABAAAABmZmZmZmZmZmZmZiIiIiIiZmZmYmZmZiZmZmYiIiIiImZmZmZmZmZmZmZmZmZmZmZmZmYmIiIiImZmZiZmZmYmZmZmJmZmZiZmZmYmIiIiImZmZmZmZmZmZmZmZmZmZmZmZmZmJiIiZmZmZmYmZiZmZmZmZiZmJmZmZmZmJiIiZg==",
-        "mimeType": "image/x-mkcd-f4",
-        "tilemapTile": true,
-        "displayName": "PowerupStartingLocation"
-    },
     "tile4": {
         "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAACAAAAACAAAAIAAAIAAAAAAgAAACAAAAACAAAAIAAAAAAAAAAgAAAAAAAAACAAAAACAAAAIAAAAAIAAAAgAAAAAgAAACAAAAACAAACAAAAAAIAAAAAIAAAAgAAAAAAAAAAAAAAAAAA==",
         "mimeType": "image/x-mkcd-f4",
@@ -51,6 +45,18 @@
         "mimeType": "image/x-mkcd-f4",
         "tilemapTile": true,
         "displayName": "Enemy2StartingLocation"
+    },
+    "tile6": {
+        "data": "hwQQABAAAABmZmZmZmZmZmZmZiIiIiIiZmZmYmZmZiZmZmYiIiIiImZmZmZmZmZmZmZmZmZmZmZmZmYmIiIiImZmZiZmZmYmZmZmJmZmZiZmZmYmIiIiImZmZmZmZmZmZmZmZmZmZmZmZmZmJiIiZmZmZmYmZiZmZmZmZiZmJmZmZmZmJiIiZg==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "Powerup1Location"
+    },
+    "tile9": {
+        "data": "hwQQABAAAABmZmZmZmZmZmZmZnd3d3d3ZmZmZ2ZmZnZmZmZ3d3d3d2ZmZmZmZmZmZmZmZmZmZmZmZmZ2d3d3d2ZmZnZmZmZ2ZmZmdmZmZnZmZmZ2d3d3d2ZmZmZmZmZmZmZmZmZmZmZmZmZmdnd3ZmZmZmZ2ZnZmZmZmZnZmdmZmZmZmdnd3Zg==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "Powerup2Location"
     },
     "level1": {
         "id": "level1",
