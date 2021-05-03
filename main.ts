@@ -22,7 +22,7 @@ namespace SpriteKind {
  * Level Functions
  */
 sprites.onCreated(SpriteKind.Enemy, function (sprite) {
-	
+    sprite.follow(Hero)
 })
 // Level Functions
 function bButtonPressed () {
@@ -35,17 +35,6 @@ function Attack () {
 function InitCharacterList () {
     CharacterList = [assets.image`HeroOption1`, assets.image`HeroOption2`, assets.image`HeroOption3`]
 }
-sprites.onDestroyed(SpriteKind.Trap2, function (sprite) {
-    animation.runMovementAnimation(
-    sprite,
-    animation.animationPresets(animation.shake),
-    500,
-    false
-    )
-})
-sprites.onCreated(SpriteKind.Trap1, function (sprite) {
-	
-})
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     bButtonPressed()
 })
@@ -440,14 +429,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         aButtonPressed()
     }
 })
-sprites.onDestroyed(SpriteKind.Trap1, function (sprite) {
-    animation.runMovementAnimation(
-    sprite,
-    animation.animationPresets(animation.shake),
-    500,
-    false
-    )
-})
 function LoadLevel () {
     if (CurrentLevelNumber >= LevelList.length - 1) {
         DoGameWon()
@@ -614,7 +595,7 @@ function LoadPowerupsForLevel () {
     tiles.createSpritesOnTiles(assets.tile`Powerup2Location`, SpriteKind.Powerup2)
 }
 sprites.onCreated(SpriteKind.Enemy2, function (sprite) {
-	
+    sprite.follow(Hero)
 })
 info.onCountdownEnd(function () {
     Hero.setFlag(SpriteFlag.GhostThroughSprites, false)
@@ -698,9 +679,6 @@ function DoGravityEffect () {
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Trap1, function (sprite, otherSprite) {
     PlayerHurt()
-})
-sprites.onCreated(SpriteKind.Trap2, function (sprite) {
-	
 })
 function DoGameWon () {
 	
@@ -906,7 +884,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Coins, function (sprite, otherSp
     otherSprite.destroy()
 })
 sprites.onCreated(SpriteKind.Projectile, function (sprite) {
-	
+    sprite.startEffect(effects.spray)
 })
 /**
  * Game Start Functions
@@ -921,20 +899,10 @@ function InitGame () {
     SelectCharacter()
 }
 sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
-    animation.runMovementAnimation(
-    sprite,
-    animation.animationPresets(animation.shake),
-    500,
-    false
-    )
+    sprite.startEffect(effects.fire, 500)
 })
 sprites.onDestroyed(SpriteKind.Projectile, function (sprite) {
-    animation.runMovementAnimation(
-    sprite,
-    animation.animationPresets(animation.shake),
-    500,
-    false
-    )
+    effects.clearParticles(sprite)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite, location) {
     NextLevel()
@@ -964,8 +932,8 @@ let LevelList: tiles.WorldMap[] = []
 let CurrentLevelNumber = 0
 let BackgroundColour = 0
 let HeroStartingLocationAsset: Image = null
-let Hero: Sprite = null
 let CharacterList: Image[] = []
+let Hero: Sprite = null
 InitGame()
 game.onUpdate(function () {
     DoGravityEffect()
