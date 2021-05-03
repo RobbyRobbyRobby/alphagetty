@@ -14,6 +14,46 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "HeroOption1"
     },
+    "|;h9rsEnDxd/SIMdUDtD": {
+        "data": "hwQQABAAAAAiIiIiIiIiIgIAAAAAAAAgAiAiIiIiACACIAAgACAAIAIgAAAAIAAgAiAAAAAgACACAAAAAAAAIAIAIAAAIAAgAgACAAAgACACIAAAACAAIAIgIiIiIgAgAgAAAAAgACACAAAAACAAIAIAAAAAIAAgAgAAAAAAACAiIiIiIiIiIg==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Enemy1"
+    },
+    "rL$qMyTwUFWAh{y+@aCh": {
+        "data": "hwQQABAAAAB3d3d3d3d3dwcAAAAAAABwBwAAAAAAAHAHcHd3d3d3cAdwAAAHAHBwB3AAAAcAcHAHcAAAAABwcAcAAAAAAABwBwAAAAAAd3AHcAAAAHB3cAdwAAAAB3BwB3AAAHcAcHAHcAd3AABwcAcAdwAAAHBwBxAAAAAAAHB3d3d3d3d3dw==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Enemy2"
+    },
+    "r}MS*MZ:HHxJ6N1?~$f_": {
+        "data": "hwQQABAAAAAiIiIiIiIiIgIAAAAAAAAgAiAAAAAAACACIAAAAAAAIAIgAAAAAAAgAiAiIiIiAiACIAAAAAAAIAIgAAAAAAAgAgAAAAAAACACACAAAAACIAIAAgAAAAIgAiAiIiIiAiACAAAAAAACIAIAAAAAAAIgAgAAAAAAACAiIiIiIiIiIg==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Trap1"
+    },
+    "*cxY{ZFEJ+Pp#(@f1bIt": {
+        "data": "hwQQABAAAAB3d3d3d3d3dwcAAAAAAABwB3AAAAAAAHAHcAAAAAAAcAdwd3d3dwBwB3AAAAAAAHAHcAAAAAAAcAdwAAAAAABwBwAAAABwAHAHcAAAAHcAcAdwAAB3cABwB3AAcABwAHAHAHcHAHAAcAcAAAAAcABwBwAAAAAAAHB3d3d3d3d3dw==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Trap2"
+    },
+    "WAwa3!": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAVVVVBQAAAFBVVVVVAAAAVVVVVVUFAFBVUFVVUFUAUFUFAABVVQBQVQUAAFVVAFBVBQAAVVUAUFUFAABVVQBQVQUAAFVVAFBVUFVVUFUAAFVVVVVVBQAAUFVVVVUAAAAAVVVVBQAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Coin"
+    },
+    "!Ing[ScL/q^P!u]17S-+": {
+        "data": "hwQQABAAAABERERERERERAQAAAAAAABABAAAAAAAAEAEQEREREREQARAAAAAAEBABEAAAAAAQEAEQAAAAABAQARAAAAEAEBABEAAAAQAQEAEQAAABABAQARAAAAEAEBABEAAAEREREAEAAAAAAAAQAQAAAAAAABABAAAAAAAAEBERERERERERA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Goal"
+    },
+    "hw;}tGs%3A": {
+        "data": "hwQQABAAAAAiIiIiIiIiIgIAAAAAAAAgAiIiIiIiIiACAgAAAgAAIAICAAACAAAgAgIAAAIAACACIAAgAAAAIAIAIgIAAAAgAgAAAAAAICACAAIAAAAgIAIgAAAAACAgAiIiIiIiIiACAAAAAAAgIAIAAAAAACAgAgAAAAAAICAiIiIiIiIiIg==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Powerup1"
+    },
+    "tFopIP+qS4@}zhwt_L{O": {
+        "data": "hwQQABAAAAB3d3d3d3d3dwcAAAAAAABwB3d3d3d3d3AHBwBwAAAAcAcHAHAAAABwBwcAcAAAAHAHcAAHAAAAcAcAdwAAcHdwBwcAAAAHcHAHBwAAcABwcAcHAAAHAHBwBwcAcAAAcHAHcAAHAABwcAcAdwAAAHBwBwAAAAAAAHB3d3d3d3d3dw==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Powerup2"
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",
