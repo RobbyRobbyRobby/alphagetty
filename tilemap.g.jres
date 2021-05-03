@@ -22,12 +22,6 @@
         "tilemapTile": true,
         "displayName": "GoalLocationTile"
     },
-    "tile4": {
-        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAACAAAAACAAAAIAAAIAAAAAAgAAACAAAAACAAAAIAAAAAAAAAAgAAAAAAAAACAAAAACAAAAIAAAAAIAAAAgAAAAAgAAACAAAAACAAACAAAAAAIAAAAAIAAAAgAAAAAAAAAAAAAAAAAA==",
-        "mimeType": "image/x-mkcd-f4",
-        "tilemapTile": true,
-        "displayName": "Enemy1StartingLocation"
-    },
     "tile2": {
         "data": "hwQQABAAAADy////////Ly/////////y//L/////L///L//////y////8v//L/////8v///y///////yL////////y/y////////L/L////////yL///////L///8v/////y//8v////L//////y///y/////y//L/////////Ly////////Lw==",
         "mimeType": "image/x-mkcd-f4",
@@ -40,12 +34,6 @@
         "tilemapTile": true,
         "displayName": "Trap2Location"
     },
-    "tile8": {
-        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAAAAAHAAAAAHAAAAcAAAcAAAAABwAAAHAAAAAHAAAAcAAAAAAAAABwAAAAAAAAAHAAAAAHAAAAcAAAAAcAAABwAAAABwAAAHAAAAAHAAAHAAAAAAcAAAAAcAAABwAAAAAAAAAAAAAAAAAA==",
-        "mimeType": "image/x-mkcd-f4",
-        "tilemapTile": true,
-        "displayName": "Enemy2StartingLocation"
-    },
     "tile6": {
         "data": "hwQQABAAAABmZmZmZmZmZmZmZiIiIiIiZmZmYmZmZiZmZmYiIiIiImZmZmZmZmZmZmZmZmZmZmZmZmYmIiIiImZmZiZmZmYmZmZmJmZmZiZmZmYmIiIiImZmZmZmZmZmZmZmZmZmZmZmZmZmJiIiZmZmZmYmZiZmZmZmZiZmJmZmZmZmJiIiZg==",
         "mimeType": "image/x-mkcd-f4",
@@ -57,6 +45,18 @@
         "mimeType": "image/x-mkcd-f4",
         "tilemapTile": true,
         "displayName": "Powerup2Location"
+    },
+    "tile4": {
+        "data": "hwQQABAAAAAiIiIiIiIiIhIREREREREhEhEhERERESESESERERESIRIRIRERIREhEhEhERESESESESERERIRIRIREREREhEhEhERERESESESESERERIRIRIRIREREhEhEhEhERESESESESERESERIRIRIRERERIhEhERERERESEiIiIiIiIiIg==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "Enemy1StartingLocation"
+    },
+    "tile8": {
+        "data": "hwQQABAAAAB3d3d3d3d3dxcRERERERFxFxFxEREREXEXEXEREREXcRcRcRERcRFxFxFxEREXEXEXEXERERcRcRcRERERFxFxFxEREREXEXEXEXERERcRcRcRcRERFxFxFxFxEREXEXEXEXEREXERcRcRcRERERdxFxEREREREXF3d3d3d3d3dw==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "Enemy2StartingLocation"
     },
     "level1": {
         "id": "level1",

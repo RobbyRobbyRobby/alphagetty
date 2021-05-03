@@ -28,13 +28,14 @@ sprites.onCreated(SpriteKind.Enemy, function (sprite) {
     sprite.follow(Hero)
 })
 function SelectHero () {
-    game.showLongText("Welcome!  Select your hero using Left and Right. ", DialogLayout.Bottom)
+    game.showLongText("Welcome to AlphaGetty!", DialogLayout.Bottom)
+    game.showLongText("Select your hero using Left and Right. Press 'A' (space) to start. ", DialogLayout.Bottom)
     while (HeroCharacterSelected == false) {
         pause(100)
     }
     game.showLongText("Character selected!", DialogLayout.Bottom)
-    LoadLevel()
     controller.moveSprite(Hero, PlayerSpeed, 0)
+    LoadLevel()
 }
 // Level Functions
 function bButtonPressed () {
