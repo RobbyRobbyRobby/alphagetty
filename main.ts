@@ -9,13 +9,10 @@ namespace SpriteKind {
  * Player Functions
  */
 /**
- * Game Start Functions
- */
-/**
- * Collision Events
- */
-/**
  * Game Lifecycle and Input Events
+ */
+/**
+ * Game Start Functions
  */
 // Level Functions
 function bButtonPressed () {
@@ -57,6 +54,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         aButtonPressed()
     }
 })
+/**
+ * Level Functions
+ */
 function LoadLevel () {
     if (CurrentLevelNumber >= LevelList.length - 1) {
         DoGameWon()
@@ -82,6 +82,9 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     }
 })
+/**
+ * Collision Events
+ */
 sprites.onOverlap(SpriteKind.Player, SpriteKind.PowerUp, function (sprite, otherSprite) {
     otherSprite.destroy()
 })
@@ -195,12 +198,12 @@ function InitGame () {
     InitLevels()
     SelectCharacter()
 }
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite, location) {
+    NextLevel()
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
     PlayerHurt()
-})
-scene.onOverlapTile(SpriteKind.Player, assets.tile`DeathTile`, function (sprite, location) {
-	
 })
 let GoalStartingLocationAsset: Image = null
 let PowerupStartingLocationAsset: Image = null
