@@ -842,11 +842,6 @@ function SetupVariables () {
     JumpPower = -100
     BackgroundColour = color.__rgb(255, 255, 255)
     HeroStartingLocationAsset = sprites.dungeon.stairLadder
-    FoodStartingLocationAsset = assets.tile`FoodStartingLocationAsset`
-    EnemyStartingLocationAsset = assets.tile`EnemyStartingLocation`
-    CoinStartingLocationAsset = assets.tile`CoinStartingLocation`
-    PowerupStartingLocationAsset = assets.tile`PowerupStartingLocation`
-    GoalStartingLocationAsset = assets.tile`GoalLocationTile`
     StartingLives = 3
     PlayerSpeed = 100
 }
@@ -1046,11 +1041,6 @@ let GoalList: Sprite[] = []
 let FoodList: Sprite[] = []
 let CoinList: Sprite[] = []
 let EnemyList: Sprite[] = []
-let GoalStartingLocationAsset: Image = null
-let PowerupStartingLocationAsset: Image = null
-let CoinStartingLocationAsset: Image = null
-let EnemyStartingLocationAsset: Image = null
-let FoodStartingLocationAsset: Image = null
 let StartingLives = 0
 let PlayerSpeed = 0
 let MainMenuBackgroundImage: Image = null
