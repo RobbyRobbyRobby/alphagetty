@@ -3,25 +3,6 @@ namespace myImages {
 
     helpers._registerFactory("image", function(name: string) {
         switch(helpers.stringTrim(name)) {
-            case "FMl!{-v0LJ-jygsV$i-D":
-            case "HeroOption1":return img`
-. . . . . . . . . . . . . . . . 
-. . . . . . 4 . . 4 . . . . . . 
-. . . . . . 4 . . 4 . . . . . . 
-. . . . . . 4 . . 4 . . . . . . 
-. . . . . . 4 4 4 4 . . . . . . 
-. . . . d d f d d d f d . . . . 
-. . . d d d d f d d d f d . . . 
-. . . d d 8 d d d 8 d f d . . . 
-. . . d d d d d d d d d d . . . 
-. . . d d d d d d d d d d . . . 
-. . . d d f d f f d f d d . . . 
-. . . . . e e e e e e . . . . . 
-. . . . . e e e e e e . . . . . 
-. . f f f e e e e e e f f f . . 
-. . f . . e e e e e e . . f . . 
-. . f . f . . . . . . f . f . . 
-`;
             case "KJ~f8!Ac":
             case "HeroOption2":return img`
 . . . 5 . . . . . . . . 5 . . . 
@@ -59,6 +40,25 @@ namespace myImages {
 . 7 7 7 7 7 7 7 7 7 7 7 7 7 7 . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
+`;
+            case "FMl!{-v0LJ-jygsV$i-D":
+            case "HeroOption1":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . 4 . . 4 . . . . . . 
+. . . . . . 4 . . 4 . . . . . . 
+. . . . . . 4 . . 4 . . . . . . 
+. . . . . . 4 4 4 4 . . . . . . 
+. . . . d d f d d d f d . . . . 
+. . . d d d d f d d d f d . . . 
+. . . d d 8 d d d 8 d f d . . . 
+. . . d d d d d d d d d d . . . 
+. . . d d d d d d d d d d . . . 
+. . . d d f d f f d f d d . . . 
+. . . . . e e e e e e . . . . . 
+. . . . . e e e e e e . . . . . 
+. . f f f e e e e e e f f f . . 
+. . f . . e e e e e e . . f . . 
+. . f . f . . . . . . f . f . . 
 `;
         }
         return null;

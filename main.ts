@@ -11,6 +11,12 @@ namespace SpriteKind {
 /**
  * Game Lifecycle and Input Events
  */
+/**
+ * Level Functions
+ */
+sprites.onCreated(SpriteKind.Enemy, function (sprite) {
+	
+})
 // Level Functions
 function bButtonPressed () {
 	
@@ -41,7 +47,7 @@ function InitLevels () {
     LevelList = [tiles.createMap(tilemap`Level0`), tiles.createMap(tilemap`level15`), tiles.createMap(tilemap`level16`)]
 }
 function LoadGoalsForLevel () {
-    GoalList = sprites.allOfKind(SpriteKind.Goals)
+    tiles.createSpritesOnTiles(assets.tile`GoalLocationTile`, SpriteKind.Goals)
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (HeroCharacterSelected == false) {
@@ -51,9 +57,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         aButtonPressed()
     }
 })
-/**
- * Level Functions
- */
 function LoadLevel () {
     if (CurrentLevelNumber >= LevelList.length - 1) {
         DoGameWon()
@@ -86,19 +89,19 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.PowerUp, function (sprite, other
     otherSprite.destroy()
 })
 function LoadPowerupsForLevel () {
-    PowerupList = sprites.allOfKind(SpriteKind.PowerUp)
+    tiles.createSpritesOnTiles(assets.tile`PowerupStartingLocation`, SpriteKind.PowerUp)
 }
 info.onCountdownEnd(function () {
     Hero.setFlag(SpriteFlag.GhostThroughSprites, false)
 })
 function LoadCoinsForLevel () {
-    CoinList = sprites.allOfKind(SpriteKind.Coins)
+    tiles.createSpritesOnTiles(assets.tile`CoinStartingLocation`, SpriteKind.Coins)
 }
 function DoGameIntroduction () {
 	
 }
 function LoadFoodForLevel () {
-    FoodList = sprites.allOfKind(SpriteKind.Food)
+    tiles.createSpritesOnTiles(assets.tile`FoodStartingLocationAsset`, SpriteKind.Food)
 }
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     if (HeroCharacterSelected == false) {
@@ -122,7 +125,7 @@ function NextLevel () {
     LoadLevel()
 }
 function LoadEnemiesForLevel () {
-    EnemyList = sprites.allOfKind(SpriteKind.Enemy)
+    tiles.createSpritesOnTiles(assets.tile`EnemyStartingLocation`, SpriteKind.Enemy)
 }
 info.onLifeZero(function () {
     OnOutOfLives()
@@ -184,8 +187,108 @@ function SetupVariables () {
     StartingLives = 3
     PlayerSpeed = 100
 }
+function InitNonPlayerSpriteTypes () {
+    EnemyList = sprites.allOfKind(SpriteKind.Enemy)
+    EnemyList.push(sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Enemy))
+    CoinList = sprites.allOfKind(SpriteKind.Coins)
+    EnemyList.push(sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Coins))
+    FoodList = sprites.allOfKind(SpriteKind.Food)
+    EnemyList.push(sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Food))
+    GoalList = sprites.allOfKind(SpriteKind.Goals)
+    EnemyList.push(sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Goals))
+    PowerupList = sprites.allOfKind(SpriteKind.PowerUp)
+    EnemyList.push(sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.PowerUp))
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Coins, function (sprite, otherSprite) {
     otherSprite.destroy()
+})
+sprites.onCreated(SpriteKind.Projectile, function (sprite) {
+	
 })
 /**
  * Game Start Functions
@@ -196,8 +299,15 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Coins, function (sprite, otherSp
 function InitGame () {
     SetupVariables()
     InitLevels()
+    InitNonPlayerSpriteTypes()
     SelectCharacter()
 }
+sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
+	
+})
+sprites.onDestroyed(SpriteKind.Projectile, function (sprite) {
+	
+})
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite, location) {
     NextLevel()
 })
@@ -205,6 +315,11 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     otherSprite.destroy()
     PlayerHurt()
 })
+let PowerupList: Sprite[] = []
+let GoalList: Sprite[] = []
+let FoodList: Sprite[] = []
+let CoinList: Sprite[] = []
+let EnemyList: Sprite[] = []
 let GoalStartingLocationAsset: Image = null
 let PowerupStartingLocationAsset: Image = null
 let CoinStartingLocationAsset: Image = null
@@ -214,13 +329,8 @@ let StartingLives = 0
 let PlayerSpeed = 0
 let GravityStrength = 0
 let TerminalVelocity = 0
-let EnemyList: Sprite[] = []
-let FoodList: Sprite[] = []
-let CoinList: Sprite[] = []
-let PowerupList: Sprite[] = []
 let SelectedHeroIndex = 0
 let HeroCharacterSelected = false
-let GoalList: Sprite[] = []
 let LevelList: tiles.WorldMap[] = []
 let CurrentLevelNumber = 0
 let BackgroundColour = 0
