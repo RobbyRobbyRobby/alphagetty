@@ -19,21 +19,29 @@ namespace SpriteKind {
  * Game Lifecycle and Input Events
  */
 /**
+ * Game Start Functions
+ */
+/**
  * Level Functions
  */
 sprites.onCreated(SpriteKind.Enemy, function (sprite) {
     sprite.follow(Hero)
 })
+function SelectHero () {
+    game.showLongText("Welcome!  Select your hero using Left and Right. ", DialogLayout.Bottom)
+    while (HeroCharacterSelected == false) {
+        pause(100)
+    }
+    game.showLongText("Character selected!", DialogLayout.Bottom)
+    LoadLevel()
+    controller.moveSprite(Hero, PlayerSpeed, 0)
+}
 // Level Functions
 function bButtonPressed () {
     Attack()
 }
 function Attack () {
 	
-}
-// Level Initializations
-function InitCharacterList () {
-    CharacterList = [assets.image`HeroOption1`, assets.image`HeroOption2`, assets.image`HeroOption3`]
 }
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     bButtonPressed()
@@ -51,6 +59,7 @@ function InitPlayerForLevel () {
 }
 function InitLevels () {
     scene.setBackgroundColor(BackgroundColour)
+    scene.setBackgroundImage(MainMenuBackgroundImage)
     CurrentLevelNumber = 0
     LevelList = [tiles.createMap(tilemap`Level0`), tiles.createMap(tilemap`level15`), tiles.createMap(tilemap`level16`)]
     LevelBackgroundImagesList = [img`
@@ -690,23 +699,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 function HealthCollected () {
     info.changeLifeBy(1)
 }
-function SelectCharacter () {
-    scene.setBackgroundImage(MainMenuBackgroundImage)
-    SelectedHeroIndex = 1
-    HeroCharacterSelected = false
-    InitCharacterList()
-    Hero = sprites.create(CharacterList[SelectedHeroIndex], SpriteKind.Player)
-    game.showLongText("Welcome!  Select your hero (left and right)", DialogLayout.Bottom)
-    Hero.setStayInScreen(true)
-    scene.cameraFollowSprite(Hero)
-    while (HeroCharacterSelected == false) {
-        pause(100)
-    }
-    game.showLongText("Character selected!", DialogLayout.Bottom)
-    controller.moveSprite(Hero, PlayerSpeed, 0)
-    info.setLife(StartingLives)
-    LoadLevel()
-}
 function OnOutOfLives () {
     LoadLevel()
 }
@@ -714,6 +706,8 @@ function OnOutOfLives () {
 // 
 // Change these to manipulate how the game acts without navigating the majority of the code base.
 function SetupVariables () {
+    HeroCharacterSelected = false
+    SelectedHeroIndex = 1
     MainMenuBackgroundImage = img`
         aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
         aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -886,17 +880,15 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Coins, function (sprite, otherSp
 sprites.onCreated(SpriteKind.Projectile, function (sprite) {
     sprite.startEffect(effects.spray)
 })
-/**
- * Game Start Functions
- */
 // Game Start Functions
 // 
 // Everything from START to play beginning
 function InitGame () {
     SetupVariables()
     InitLevels()
+    InitHero()
+    SelectHero()
     InitNonPlayerSpriteTypes()
-    SelectCharacter()
 }
 sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
     sprite.startEffect(effects.fire, 500)
@@ -904,6 +896,14 @@ sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
 sprites.onDestroyed(SpriteKind.Projectile, function (sprite) {
     effects.clearParticles(sprite)
 })
+// Level Initializations
+function InitHero () {
+    CharacterList = [assets.image`HeroOption1`, assets.image`HeroOption2`, assets.image`HeroOption3`]
+    Hero = sprites.create(CharacterList[SelectedHeroIndex], SpriteKind.Player)
+    info.setLife(StartingLives)
+    Hero.setStayInScreen(true)
+    scene.cameraFollowSprite(Hero)
+}
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite, location) {
     NextLevel()
 })
@@ -915,24 +915,24 @@ let GoalList: Sprite[] = []
 let FoodList: Sprite[] = []
 let CoinList: Sprite[] = []
 let EnemyList: Sprite[] = []
+let StartingLives = 0
 let BasePlayerSpeed = 0
 let BaseJumpingPower = 0
 let BaseGravityStregnth = 0
-let StartingLives = 0
-let PlayerSpeed = 0
-let MainMenuBackgroundImage: Image = null
 let GravityStrength = 0
 let TerminalVelocity = 0
 let JumpPower = 0
 let HasDoubleJumped = false
+let CharacterList: Image[] = []
 let SelectedHeroIndex = 0
-let HeroCharacterSelected = false
 let LevelBackgroundImagesList: Image[] = []
 let LevelList: tiles.WorldMap[] = []
 let CurrentLevelNumber = 0
+let MainMenuBackgroundImage: Image = null
 let BackgroundColour = 0
 let HeroStartingLocationAsset: Image = null
-let CharacterList: Image[] = []
+let PlayerSpeed = 0
+let HeroCharacterSelected = false
 let Hero: Sprite = null
 InitGame()
 game.onUpdate(function () {
