@@ -54,6 +54,11 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "HeroOption3"
     },
+    "image1": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAREREBAAAAEP///x8AAADxzMzM/AEAAPHMzMz8AQAA8cz/z/wBAADxzB/P/AEAAPHM/8/8AQAA8czMzPwBAADxzMzM/AEAABD///8fAAAAABEREQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Projectile"
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",

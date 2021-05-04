@@ -8,6 +8,7 @@ namespace SpriteKind {
     export const Trap2 = SpriteKind.create()
     export const Enemy2 = SpriteKind.create()
     export const Powerup2 = SpriteKind.create()
+    export const EnemyProjectile = SpriteKind.create()
 }
 /**
  * Player Functions
@@ -23,7 +24,7 @@ namespace SpriteKind {
  */
 sprites.onCreated(SpriteKind.Enemy, function (sprite) {
     sprite.setImage(assets.image`Enemy1`)
-    sprite.follow(Hero, 50)
+    sprite.follow(Hero, 25)
 })
 function SelectHero () {
     game.showLongText("Welcome to AlphaGetty!", DialogLayout.Bottom)
@@ -37,13 +38,15 @@ function SelectHero () {
 }
 // Level Functions
 function bButtonPressed () {
-    Attack()
-}
-function Attack () {
-	
+    HeroSHoot()
 }
 sprites.onCreated(SpriteKind.Goals, function (sprite) {
     sprite.setImage(assets.image`Goal`)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.EnemyProjectile, function (sprite, otherSprite) {
+    otherSprite.destroy()
+    PlayerHurt()
+    music.smallCrash.play()
 })
 sprites.onCreated(SpriteKind.Trap1, function (sprite) {
     sprite.setImage(assets.image`Trap1`)
@@ -58,11 +61,13 @@ function PlayerHurt () {
     info.changeLifeBy(-1)
     info.startCountdown(2)
     Hero.setFlag(SpriteFlag.GhostThroughSprites, true)
+    Hero.startEffect(effects.warmRadial, 2000)
 }
 function aButtonPressed () {
     Jump()
 }
 function InitPlayerForLevel () {
+    StartingLives = 3
     tiles.placeOnRandomTile(Hero, HeroStartingLocationAsset)
     scene.cameraFollowSprite(Hero)
 }
@@ -610,6 +615,7 @@ sprites.onCreated(SpriteKind.Food, function (sprite) {
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Powerup2, function (sprite, otherSprite) {
     otherSprite.destroy()
+    music.powerUp.play()
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     if (HeroCharacterSelected == false) {
@@ -622,6 +628,9 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
             Hero.setImage(CharacterList[SelectedHeroIndex])
             Hero.startEffect(effects.warmRadial, 500)
         }
+    } else {
+        // Direction in whole numbers, using the hours of a clock face
+        HeroFacing = 9
     }
 })
 /**
@@ -629,10 +638,28 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
  */
 sprites.onOverlap(SpriteKind.Player, SpriteKind.PowerUp, function (sprite, otherSprite) {
     otherSprite.destroy()
+    music.powerUp.play()
+})
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, otherSprite) {
+    sprite.destroy()
+    otherSprite.destroy()
+    music.zapped.play()
+})
+function HeroSHoot () {
+    if (HeroFacing == 3) {
+        projectile = sprites.createProjectileFromSprite(assets.image`Projectile`, Hero, 75, 0)
+    } else {
+        projectile = sprites.createProjectileFromSprite(assets.image`Projectile`, Hero, -75, 0)
+    }
+}
+sprites.onDestroyed(SpriteKind.EnemyProjectile, function (sprite) {
+	
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Trap2, function (sprite, otherSprite) {
-    otherSprite.destroy()
+    otherSprite.startEffect(effects.disintegrate, 500)
     PlayerHurt()
+    music.bigCrash.play()
+    otherSprite.destroy()
 })
 function LoadPowerupsForLevel () {
     tiles.destroySpritesOfKind(SpriteKind.PowerUp)
@@ -642,7 +669,7 @@ function LoadPowerupsForLevel () {
 }
 sprites.onCreated(SpriteKind.Enemy2, function (sprite) {
     sprite.setImage(assets.image`Enemy2`)
-    sprite.follow(Hero, 75)
+    sprite.follow(Hero, 40)
 })
 sprites.onCreated(SpriteKind.Powerup2, function (sprite) {
     sprite.setImage(assets.image`Powerup2`)
@@ -653,6 +680,9 @@ info.onCountdownEnd(function () {
 function LoadCoinsForLevel () {
     tiles.destroySpritesOfKind(SpriteKind.Coins)
     tiles.createSpritesOnTiles(assets.tile`CoinStartingLocation`, SpriteKind.Coins)
+}
+function EnemyShoot () {
+	
 }
 function Jump () {
     if (Hero.isHittingTile(CollisionDirection.Bottom)) {
@@ -670,12 +700,7 @@ function Jump () {
     }
 }
 sprites.onDestroyed(SpriteKind.Enemy2, function (sprite) {
-    animation.runMovementAnimation(
-    sprite,
-    animation.animationPresets(animation.shake),
-    500,
-    false
-    )
+	
 })
 function DoGameIntroduction () {
 	
@@ -695,14 +720,18 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
             Hero.setImage(CharacterList[SelectedHeroIndex])
             Hero.startEffect(effects.warmRadial, 500)
         }
+    } else {
+        // Direction in whole numbers, using the hours of a clock face
+        HeroFacing = 3
     }
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
-    otherSprite.destroy()
-    PlayerHurt()
 })
 sprites.onCreated(SpriteKind.Coins, function (sprite) {
     sprite.setImage(assets.image`Coin`)
+})
+sprites.onOverlap(SpriteKind.Enemy2, SpriteKind.Projectile, function (sprite, otherSprite) {
+    sprite.destroy()
+    otherSprite.destroy()
+    music.zapped.play()
 })
 function NextLevel () {
     game.showLongText("" + convertToText(CoinsCollectedForLevel) + " coins collected.", DialogLayout.Bottom)
@@ -725,11 +754,14 @@ info.onLifeZero(function () {
     OnOutOfLives()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy2, function (sprite, otherSprite) {
-    otherSprite.destroy()
+    otherSprite.startEffect(effects.disintegrate, 500)
     PlayerHurt()
+    music.smallCrash.play()
+    otherSprite.destroy()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Goals, function (sprite, otherSprite) {
     otherSprite.destroy()
+    music.beamUp.play()
 })
 function DoGravityEffect () {
     if (Hero.vy < TerminalVelocity) {
@@ -740,8 +772,10 @@ function DoGravityEffect () {
     }
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Trap1, function (sprite, otherSprite) {
-    otherSprite.destroy()
+    otherSprite.startEffect(effects.disintegrate, 500)
     PlayerHurt()
+    music.bigCrash.play()
+    otherSprite.destroy()
 })
 sprites.onCreated(SpriteKind.Trap2, function (sprite) {
     sprite.setImage(assets.image`Trap2`)
@@ -752,12 +786,14 @@ function DoGameWon () {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     otherSprite.destroy()
     HealthCollected()
+    music.baDing.play()
 })
 function HealthCollected () {
     info.changeLifeBy(1)
 }
 function OnOutOfLives () {
     LoadLevel()
+    music.wawawawaa.play()
 }
 // Start here!
 // 
@@ -889,10 +925,10 @@ function SetupVariables () {
         `
     BaseGravityStregnth = 5
     GravityStrength = BaseGravityStregnth
-    TerminalVelocity = 150
-    BaseJumpingPower = -150
+    TerminalVelocity = 100
+    BaseJumpingPower = -125
     JumpPower = BaseJumpingPower
-    BasePlayerSpeed = 100
+    BasePlayerSpeed = 75
     PlayerSpeed = BasePlayerSpeed
     BackgroundColour = color.__rgb(255, 255, 255)
     HeroStartingLocationAsset = sprites.dungeon.stairLadder
@@ -901,18 +937,14 @@ function SetupVariables () {
     CoinsCollectedForLevel = 0
     CoinsCollectedTotal = 0
 }
-function InitNonPlayerSpriteTypes () {
-    EnemyList = sprites.allOfKind(SpriteKind.Enemy)
-    CoinList = sprites.allOfKind(SpriteKind.Coins)
-    FoodList = sprites.allOfKind(SpriteKind.Food)
-    GoalList = sprites.allOfKind(SpriteKind.Goals)
-    PowerupList = sprites.allOfKind(SpriteKind.PowerUp)
-}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Coins, function (sprite, otherSprite) {
     otherSprite.destroy()
     CoinsCollectedForLevel += 1
+    music.baDing.play()
 })
 sprites.onCreated(SpriteKind.Projectile, function (sprite) {
+    sprite.setImage(assets.image`Projectile`)
+    sprite.setFlag(SpriteFlag.AutoDestroy, true)
     sprite.startEffect(effects.spray)
 })
 // Game Start Functions
@@ -923,13 +955,20 @@ function InitGame () {
     InitLevels()
     InitHero()
     SelectHero()
-    InitNonPlayerSpriteTypes()
 }
 sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
-    sprite.startEffect(effects.fire, 500)
+	
+})
+function HeroShortRangeAttack () {
+	
+}
+sprites.onCreated(SpriteKind.EnemyProjectile, function (sprite) {
+    sprite.setImage(assets.image`Projectile`)
+    sprite.setFlag(SpriteFlag.AutoDestroy, true)
+    sprite.startEffect(effects.spray)
 })
 sprites.onDestroyed(SpriteKind.Projectile, function (sprite) {
-    effects.clearParticles(sprite)
+	
 })
 // Level Initializations
 function InitHero () {
@@ -938,20 +977,19 @@ function InitHero () {
     info.setLife(StartingLives)
     Hero.setStayInScreen(true)
     scene.cameraFollowSprite(Hero)
+    // Direction in whole numbers, using the hours of a clock face
+    HeroFacing = 3
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite, location) {
     NextLevel()
+    music.footstep.play()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    otherSprite.destroy()
+    otherSprite.startEffect(effects.disintegrate, 500)
     PlayerHurt()
+    music.bigCrash.play()
+    otherSprite.destroy()
 })
-let PowerupList: Sprite[] = []
-let GoalList: Sprite[] = []
-let FoodList: Sprite[] = []
-let CoinList: Sprite[] = []
-let EnemyList: Sprite[] = []
-let StartingLives = 0
 let BasePlayerSpeed = 0
 let BaseJumpingPower = 0
 let BaseGravityStregnth = 0
@@ -960,6 +998,8 @@ let TerminalVelocity = 0
 let CoinsCollectedTotal = 0
 let JumpPower = 0
 let HasDoubleJumped = false
+let projectile: Sprite = null
+let HeroFacing = 0
 let CharacterList: Image[] = []
 let SelectedHeroIndex = 0
 let LevelStartMessage = ""
@@ -970,6 +1010,7 @@ let CurrentLevelNumber = 0
 let MainMenuBackgroundImage: Image = null
 let BackgroundColour = 0
 let HeroStartingLocationAsset: Image = null
+let StartingLives = 0
 let PlayerSpeed = 0
 let HeroCharacterSelected = false
 let Hero: Sprite = null

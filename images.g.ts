@@ -212,6 +212,25 @@ namespace myImages {
 . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . 
 . . . . . . . . . . . . . . . . 
 `;
+            case "image1":
+            case "Projectile":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . 1 1 1 1 1 1 1 . . . . . 
+. . . 1 f f f f f f f 1 . . . . 
+. . 1 f c c c c c c c f 1 . . . 
+. . 1 f c c c c c c c f 1 . . . 
+. . 1 f c c f f f c c f 1 . . . 
+. . 1 f c c f 1 f c c f 1 . . . 
+. . 1 f c c f f f c c f 1 . . . 
+. . 1 f c c c c c c c f 1 . . . 
+. . 1 f c c c c c c c f 1 . . . 
+. . . 1 f f f f f f f 1 . . . . 
+. . . . 1 1 1 1 1 1 1 . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`;
         }
         return null;
     })
