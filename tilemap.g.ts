@@ -17,9 +17,9 @@ namespace myTiles {
     //% fixedInstance jres blockIdentity=images._tile
     export const tile9 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
-    export const tile4 = image.ofBuffer(hex``);
-    //% fixedInstance jres blockIdentity=images._tile
     export const tile8 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile4 = image.ofBuffer(hex``);
 
     helpers._registerFactory("tilemap", function(name: string) {
         switch(helpers.stringTrim(name)) {
@@ -498,7 +498,7 @@ namespace myTiles {
 . . . . . . . . . . . . . . . . 
 `, [myTiles.transparency16], TileScale.Sixteen);
             case "Level0":
-            case "level5":return tiles.createTilemap(hex`1000100004040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040104040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040204040404040404040404040404040404040403030303030303030303030303030303`, img`
+            case "level5":return tiles.createTilemap(hex`1000100004040404040404040404040404040404040404040404040404040404040404040404040404040404060404040404040404040404040604040404040404040404040404040404040404040404040404040404040404040404040404040404040404040104040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404050404040404040404040404040404040404040404040404040404040404040404040404040204040404040404040404040404040404040403030303030303030303030303030303`, img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -515,7 +515,7 @@ namespace myTiles {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-`, [myTiles.transparency16,sprites.dungeon.stairLadder,sprites.dungeon.collectibleInsignia,sprites.dungeon.darkGroundNorthWest0,sprites.dungeon.floorLightMoss], TileScale.Sixteen);
+`, [myTiles.transparency16,sprites.dungeon.stairLadder,sprites.dungeon.collectibleInsignia,sprites.dungeon.darkGroundNorthWest0,sprites.dungeon.floorLightMoss,myTiles.tile4,myTiles.tile8], TileScale.Sixteen);
         }
         return null;
     })
@@ -537,10 +537,10 @@ namespace myTiles {
             case "tile6":return tile6;
             case "Powerup2Location":
             case "tile9":return tile9;
-            case "Enemy1StartingLocation":
-            case "tile4":return tile4;
             case "Enemy2StartingLocation":
             case "tile8":return tile8;
+            case "Enemy1StartingLocation":
+            case "tile4":return tile4;
         }
         return null;
     })

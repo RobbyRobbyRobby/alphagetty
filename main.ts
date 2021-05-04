@@ -10,9 +10,6 @@ namespace SpriteKind {
     export const Powerup2 = SpriteKind.create()
 }
 /**
- * Collision Events
- */
-/**
  * Player Functions
  */
 /**
@@ -25,7 +22,8 @@ namespace SpriteKind {
  * Level Functions
  */
 sprites.onCreated(SpriteKind.Enemy, function (sprite) {
-    sprite.follow(Hero)
+    sprite.setImage(assets.image`Enemy1`)
+    sprite.follow(Hero, 50)
 })
 function SelectHero () {
     game.showLongText("Welcome to AlphaGetty!", DialogLayout.Bottom)
@@ -44,6 +42,15 @@ function bButtonPressed () {
 function Attack () {
 	
 }
+sprites.onCreated(SpriteKind.Goals, function (sprite) {
+    sprite.setImage(assets.image`Goal`)
+})
+sprites.onCreated(SpriteKind.Trap1, function (sprite) {
+    sprite.setImage(assets.image`Trap1`)
+})
+sprites.onCreated(SpriteKind.PowerUp, function (sprite) {
+    sprite.setImage(assets.image`Powerup1`)
+})
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     bButtonPressed()
 })
@@ -57,6 +64,7 @@ function aButtonPressed () {
 }
 function InitPlayerForLevel () {
     tiles.placeOnRandomTile(Hero, HeroStartingLocationAsset)
+    scene.cameraFollowSprite(Hero)
 }
 function InitLevels () {
     scene.setBackgroundColor(BackgroundColour)
@@ -429,6 +437,7 @@ function InitLevels () {
         `]
 }
 function LoadGoalsForLevel () {
+    tiles.destroySpritesOfKind(SpriteKind.Goals)
     tiles.createSpritesOnTiles(assets.tile`GoalLocationTile`, SpriteKind.Goals)
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -570,13 +579,35 @@ function LoadLevel () {
                 `)
         }
         tiles.loadMap(LevelList[CurrentLevelNumber])
+        CoinsCollectedForLevel = 0
         LoadEnemiesForLevel()
         LoadFoodForLevel()
-        InitPlayerForLevel()
         LoadPowerupsForLevel()
         LoadGoalsForLevel()
+        InitPlayerForLevel()
+        game.showLongText("Level " + convertToText(CurrentLevelNumber + 1) + ". " + LevelStartMessage, DialogLayout.Bottom)
     }
 }
+sprites.onCreated(SpriteKind.Food, function (sprite) {
+    sprite.setImage(img`
+        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
+        5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 
+        5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 
+        5 1 1 1 1 5 5 5 5 5 5 5 1 1 1 5 
+        5 1 1 1 1 5 1 1 1 1 1 1 1 1 1 5 
+        5 1 1 1 1 5 1 1 1 1 1 1 1 1 1 5 
+        5 1 1 1 1 5 1 1 1 1 1 1 1 1 1 5 
+        5 1 1 1 1 5 1 1 1 1 1 1 1 1 1 5 
+        5 1 1 1 1 5 5 5 5 1 1 1 1 1 1 5 
+        5 1 1 1 1 5 1 1 1 1 1 1 1 1 1 5 
+        5 1 1 1 1 5 1 1 1 1 1 1 1 1 1 5 
+        5 1 1 1 1 5 1 1 1 1 1 1 1 1 1 5 
+        5 1 1 1 1 5 1 1 1 1 1 1 1 1 1 5 
+        5 1 1 1 1 5 1 1 1 1 1 1 1 1 1 5 
+        5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 
+        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
+        `)
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Powerup2, function (sprite, otherSprite) {
     otherSprite.destroy()
 })
@@ -593,6 +624,9 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     }
 })
+/**
+ * Collision Events
+ */
 sprites.onOverlap(SpriteKind.Player, SpriteKind.PowerUp, function (sprite, otherSprite) {
     otherSprite.destroy()
 })
@@ -601,16 +635,23 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Trap2, function (sprite, otherSp
     PlayerHurt()
 })
 function LoadPowerupsForLevel () {
+    tiles.destroySpritesOfKind(SpriteKind.PowerUp)
+    tiles.destroySpritesOfKind(SpriteKind.Powerup2)
     tiles.createSpritesOnTiles(assets.tile`Powerup1Location`, SpriteKind.PowerUp)
     tiles.createSpritesOnTiles(assets.tile`Powerup2Location`, SpriteKind.Powerup2)
 }
 sprites.onCreated(SpriteKind.Enemy2, function (sprite) {
-    sprite.follow(Hero)
+    sprite.setImage(assets.image`Enemy2`)
+    sprite.follow(Hero, 75)
+})
+sprites.onCreated(SpriteKind.Powerup2, function (sprite) {
+    sprite.setImage(assets.image`Powerup2`)
 })
 info.onCountdownEnd(function () {
     Hero.setFlag(SpriteFlag.GhostThroughSprites, false)
 })
 function LoadCoinsForLevel () {
+    tiles.destroySpritesOfKind(SpriteKind.Coins)
     tiles.createSpritesOnTiles(assets.tile`CoinStartingLocation`, SpriteKind.Coins)
 }
 function Jump () {
@@ -640,6 +681,7 @@ function DoGameIntroduction () {
 	
 }
 function LoadFoodForLevel () {
+    tiles.destroySpritesOfKind(SpriteKind.Food)
     tiles.createSpritesOnTiles(assets.tile`FoodStartingLocationAsset`, SpriteKind.Food)
 }
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -659,11 +701,21 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, ot
     otherSprite.destroy()
     PlayerHurt()
 })
+sprites.onCreated(SpriteKind.Coins, function (sprite) {
+    sprite.setImage(assets.image`Coin`)
+})
 function NextLevel () {
+    game.showLongText("" + convertToText(CoinsCollectedForLevel) + " coins collected.", DialogLayout.Bottom)
+    music.baDing.play()
+    CoinsCollectedTotal += CoinsCollectedForLevel
     CurrentLevelNumber += 1
     LoadLevel()
 }
 function LoadEnemiesForLevel () {
+    tiles.destroySpritesOfKind(SpriteKind.Enemy)
+    tiles.destroySpritesOfKind(SpriteKind.Enemy2)
+    tiles.destroySpritesOfKind(SpriteKind.Trap1)
+    tiles.destroySpritesOfKind(SpriteKind.Trap2)
     tiles.createSpritesOnTiles(assets.tile`Enemy1StartingLocation`, SpriteKind.Enemy)
     tiles.createSpritesOnTiles(assets.tile`Enemy2StartingLocation`, SpriteKind.Enemy2)
     tiles.createSpritesOnTiles(assets.tile`Trap1Location`, SpriteKind.Trap1)
@@ -688,7 +740,11 @@ function DoGravityEffect () {
     }
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Trap1, function (sprite, otherSprite) {
+    otherSprite.destroy()
     PlayerHurt()
+})
+sprites.onCreated(SpriteKind.Trap2, function (sprite) {
+    sprite.setImage(assets.image`Trap2`)
 })
 function DoGameWon () {
 	
@@ -841,42 +897,20 @@ function SetupVariables () {
     BackgroundColour = color.__rgb(255, 255, 255)
     HeroStartingLocationAsset = sprites.dungeon.stairLadder
     StartingLives = 3
+    LevelStartMessage = "Ready?"
+    CoinsCollectedForLevel = 0
+    CoinsCollectedTotal = 0
 }
 function InitNonPlayerSpriteTypes () {
     EnemyList = sprites.allOfKind(SpriteKind.Enemy)
-    EnemyList.push(sprites.create(assets.image`Enemy1`, SpriteKind.Enemy))
-    EnemyList.push(sprites.create(assets.image`Enemy2`, SpriteKind.Enemy2))
-    EnemyList.push(sprites.create(assets.image`Trap1`, SpriteKind.Trap1))
-    EnemyList.push(sprites.create(assets.image`Trap2`, SpriteKind.Trap2))
     CoinList = sprites.allOfKind(SpriteKind.Coins)
-    CoinList.push(sprites.create(assets.image`Coin`, SpriteKind.Coins))
     FoodList = sprites.allOfKind(SpriteKind.Food)
-    FoodList.push(sprites.create(img`
-        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-        5 . . . . . . . . . . . . . . 5 
-        5 . . . . . . . . . . . . . . 5 
-        5 . . . . 5 5 5 5 5 5 5 . . . 5 
-        5 . . . . 5 . . . . . . . . . 5 
-        5 . . . . 5 . . . . . . . . . 5 
-        5 . . . . 5 . . . . . . . . . 5 
-        5 . . . . 5 . . . . . . . . . 5 
-        5 . . . . 5 5 5 5 . . . . . . 5 
-        5 . . . . 5 . . . . . . . . . 5 
-        5 . . . . 5 . . . . . . . . . 5 
-        5 . . . . 5 . . . . . . . . . 5 
-        5 . . . . 5 . . . . . . . . . 5 
-        5 . . . . 5 . . . . . . . . . 5 
-        5 . . . . . . . . . . . . . . 5 
-        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-        `, SpriteKind.Food))
     GoalList = sprites.allOfKind(SpriteKind.Goals)
-    GoalList.push(sprites.create(assets.image`Goal`, SpriteKind.Goals))
     PowerupList = sprites.allOfKind(SpriteKind.PowerUp)
-    PowerupList.push(sprites.create(assets.image`Powerup1`, SpriteKind.PowerUp))
-    PowerupList.push(sprites.create(assets.image`Powerup2`, SpriteKind.Powerup2))
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Coins, function (sprite, otherSprite) {
     otherSprite.destroy()
+    CoinsCollectedForLevel += 1
 })
 sprites.onCreated(SpriteKind.Projectile, function (sprite) {
     sprite.startEffect(effects.spray)
@@ -909,6 +943,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, func
     NextLevel()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    otherSprite.destroy()
     PlayerHurt()
 })
 let PowerupList: Sprite[] = []
@@ -922,10 +957,13 @@ let BaseJumpingPower = 0
 let BaseGravityStregnth = 0
 let GravityStrength = 0
 let TerminalVelocity = 0
+let CoinsCollectedTotal = 0
 let JumpPower = 0
 let HasDoubleJumped = false
 let CharacterList: Image[] = []
 let SelectedHeroIndex = 0
+let LevelStartMessage = ""
+let CoinsCollectedForLevel = 0
 let LevelBackgroundImagesList: Image[] = []
 let LevelList: tiles.WorldMap[] = []
 let CurrentLevelNumber = 0
