@@ -14,10 +14,16 @@ namespace SpriteKind {
  * Player Functions
  */
 /**
+ * Sprite Creation and Destruction
+ */
+/**
  * Game Lifecycle and Input Events
  */
 /**
  * Game Start Functions
+ */
+/**
+ * Collision Events
  */
 /**
  * Level Functions
@@ -38,7 +44,7 @@ function SelectHero () {
 }
 // Level Functions
 function bButtonPressed () {
-    HeroSHoot()
+    HeroShoot()
 }
 sprites.onCreated(SpriteKind.Goals, function (sprite) {
     sprite.setImage(assets.image`Goal`)
@@ -633,9 +639,6 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
         HeroFacing = 9
     }
 })
-/**
- * Collision Events
- */
 sprites.onOverlap(SpriteKind.Player, SpriteKind.PowerUp, function (sprite, otherSprite) {
     otherSprite.destroy()
     music.powerUp.play()
@@ -645,13 +648,6 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, oth
     otherSprite.destroy()
     music.zapped.play()
 })
-function HeroSHoot () {
-    if (HeroFacing == 3) {
-        projectile = sprites.createProjectileFromSprite(assets.image`Projectile`, Hero, 75, 0)
-    } else {
-        projectile = sprites.createProjectileFromSprite(assets.image`Projectile`, Hero, -75, 0)
-    }
-}
 sprites.onDestroyed(SpriteKind.EnemyProjectile, function (sprite) {
 	
 })
@@ -728,6 +724,13 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
 sprites.onCreated(SpriteKind.Coins, function (sprite) {
     sprite.setImage(assets.image`Coin`)
 })
+function HeroShoot () {
+    if (HeroFacing == 3) {
+        projectile = sprites.createProjectileFromSprite(assets.image`Projectile`, Hero, 75, 0)
+    } else {
+        projectile = sprites.createProjectileFromSprite(assets.image`Projectile`, Hero, -75, 0)
+    }
+}
 sprites.onOverlap(SpriteKind.Enemy2, SpriteKind.Projectile, function (sprite, otherSprite) {
     sprite.destroy()
     otherSprite.destroy()
@@ -996,9 +999,9 @@ let BaseGravityStregnth = 0
 let GravityStrength = 0
 let TerminalVelocity = 0
 let CoinsCollectedTotal = 0
+let projectile: Sprite = null
 let JumpPower = 0
 let HasDoubleJumped = false
-let projectile: Sprite = null
 let HeroFacing = 0
 let CharacterList: Image[] = []
 let SelectedHeroIndex = 0
